@@ -57,10 +57,10 @@ def load_schedule(excel_file):
     # Normalize column names
     sched.columns = [str(c).strip().lower().replace(' ', '_') for c in sched.columns]
     # Validate essential columns
-    """
-    print(sched.columns)
-    st.write(sched.columns)
-    """
+    
+    #print(sched.columns)
+    #st.write(sched.columns)
+    
     required = {'course_id', 'preferred_date', 'preferred_time', 'duration_by_hour'}
     if not required.issubset(set(sched.columns)):
         st.error("Schedule file must contain 'Course ID', 'Preferred Date', 'Preferred Time', and 'Duration by Hour' columns.")
@@ -70,11 +70,11 @@ def load_schedule(excel_file):
     # Parse dates and times
     print(sched['preferred_date'])
     first_time =  sched['preferred_time'].apply(lambda x: extract_start_time(x))
-    """
-    print("-----------")
-    print (first_time)
-    print("-----------")
-    """   
+    
+    #print("-----------")
+    #print (first_time)
+    #print("-----------")
+    
 
 
     # combine date + that first time and parse with the right format
@@ -82,11 +82,11 @@ def load_schedule(excel_file):
         sched['preferred_date'].astype(str) + ' ' + first_time,
         errors='coerce'
     )
-    """
-    print("------gggg-----")
-    print (sched['start_dt'] )
-    print("------hhhh-----")
-    """
+    
+    #print("------gggg-----")
+    #print (sched['start_dt'] )
+    #print("------hhhh-----")
+
     # Ensure duration is numeric
     #hour = sched['duration_by_hour'].apply()
     hour = sched['duration_by_hour'].apply(lambda x: extract_hour(str(x)))
