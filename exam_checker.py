@@ -148,7 +148,7 @@ def detect_conflicts(student_courses, schedule_df):
 
 # Main Streamlit app
 def main():
-    st.title("Exam Conflict Checker - Version 2")
+    st.title("Exam Conflict Checker - Version 2.0")
     st.write("Upload class list CSVs and an exam schedule Excel to detect student exam conflicts, including overlapping times.")
 
     # Upload inputs
