@@ -5,8 +5,8 @@ This Streamlit app detects **exam schedule conflicts** for students based on cla
 ## 📁 Input Files
 
 ### 1. Class List Files (CSV format)
-Upload **one or more CSV files**, each representing a course’s class list. The file's name should be the course code. 
-Example: CSAI 230.csv or CSAI_230.csv. Make sure you leave a space or add an underscore between the code and number 
+Upload **one or more CSV files**, each representing a course’s class list.  The file's name should be the course code. <br>
+**Example**: **CSAI 230.csv** or **CSAI_230.csv**. <br>Make sure you leave a space or add an underscore between the code and number. 
 
 
 #### Expected Columns:
