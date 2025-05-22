@@ -14,7 +14,7 @@ Upload **one or more CSV files**, each representing a course’s class list.  Th
 - `Status`: Only rows with `"Add"` in this column will be considered enrolled
 
 #### File Naming:
-The **course code** is extracted from the filename. For example, a file named `CSAI385_SectionA.csv` will be interpreted as course `CSAI385`.
+The **course code** is extracted from the filename. For example, a file named `CSAI 385.csv` will be interpreted as course `CSAI 385`.
 
 ### Example:
 ```csv
