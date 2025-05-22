@@ -5,7 +5,9 @@ This Streamlit app detects **exam schedule conflicts** for students based on cla
 ## 📁 Input Files
 
 ### 1. Class List Files (CSV format)
-Upload **one or more CSV files**, each representing a course’s class list.
+Upload **one or more CSV files**, each representing a course’s class list. The file's name should be the course code. 
+Example: CSAI 230.csv or CSAI_230.csv. Make sure you leave a space or add an underscore between the code and number 
+
 
 #### Expected Columns:
 - `ID`: Unique student identifier (e.g., university ID)
@@ -34,16 +36,17 @@ This is a single Excel file containing the complete exam schedule.
 | Column Name         | Description                                 |
 |---------------------|---------------------------------------------|
 | Course ID           | Course identifier (e.g., CSAI385)           |
-| Preferred Date      | Date of the exam (YYYY-MM-DD)               |
+| Preferred Date      | Date of the exam (DD/MM/YYYY)               |
 | Preferred Time      | Time range (e.g., "9:30 AM - 11:30 AM")     |
 | Duration by Hour    | Duration in hours (e.g., 2)                 |
 
+
+
+
 ### 🧾 Example
 
-| Course ID | Preferred Date | Preferred Time         | Duration by Hour |
-|-----------|----------------|------------------------|------------------|
-| CSAI385   | 2025-04-06     | 9:30 AM - 11:30 AM     | 2                |
-| MATH101   | 2025-04-06     | 10:30 AM - 12:30 PM    | 2                |
+![image](https://github.com/user-attachments/assets/3748779e-b2ac-46cd-8b10-f2d5844c6f22)
+
 
 > ⚠️ **Note:** The program automatically parses the start time from the `Preferred Time` column and calculates the end time using `Duration by Hour` (not the end time).
 
