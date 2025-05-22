@@ -26,7 +26,8 @@ ID,Status
 
 ## 2. Exam Schedule File (Excel format)
 
-This is a single Excel file containing the complete exam schedule.
+This is a single Excel file containing the complete exam schedule. <br>
+**MAKE SURE YOU LEAVE THE FIRST ROW EMPTY AND REMOVE ALL FILTERS BEFORE SAVING THE FILE**
 
 ### 🗂 Sheet Structure
 
@@ -45,7 +46,7 @@ This is a single Excel file containing the complete exam schedule.
 
 ### 🧾 Example
 
-![image](https://github.com/user-attachments/assets/3748779e-b2ac-46cd-8b10-f2d5844c6f22)
+![image](https://github.com/user-attachments/assets/d55ffaa3-8982-4552-ad14-39bdab86325a)
 
 
 > ⚠️ **Note:** The program automatically parses the start time from the `Preferred Time` column and calculates the end time using `Duration by Hour` (not the end time).
