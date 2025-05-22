@@ -5,10 +5,11 @@ from io import BytesIO
 import itertools
 import re
 
+debug = False
 
 def extract_hour(text):
-    match = re.search(r'(\d+)', text)
-    return int(match.group(1)) if match else None
+    match = re.search(r'\d+(?:\.\d+)?', text)
+    return float(match.group()) if match else None
 
 def extract_start_time(in_time):
     first_time = in_time.split('-')[0].strip()
@@ -22,7 +23,7 @@ def extract_start_time(in_time):
         parts = first_time.split(':')
         first_time = parts[0].zfill(2) + ':' + parts[1]
     first_time = first_time.replace('AM', '').replace('PM', '').strip()
-    print("first time", first_time)
+    if debug: print("first time", first_time)
 
     return first_time
 
@@ -66,9 +67,9 @@ def load_schedule(excel_file):
         st.error("Schedule file must contain 'Course ID', 'Preferred Date', 'Preferred Time', and 'Duration by Hour' columns.")
         return pd.DataFrame()
     # Normalize course IDs
-    sched['course_id'] = sched['course_id'].astype(str).str.upper()
+    sched['course_id'] = sched['course_id'].astype(str).str.upper().str.strip()
     # Parse dates and times
-    print(sched['preferred_date'])
+    if debug: print(sched['preferred_date'])
     first_time =  sched['preferred_time'].apply(lambda x: extract_start_time(x))
     
     #print("-----------")
@@ -105,15 +106,33 @@ def detect_conflicts(student_courses, schedule_df):
         for _, row in schedule_df.iterrows()
     }
     conflicts = []
-    print("exam_map", exam_map)
+    if debug:
+        print("exam_map", exam_map)
+        print("student_courses", student_courses)
+        print("-----------------")
+        print()
     for sid, courses in student_courses.items():
         # Gather this student's exam slots
-        slots = {c: exam_map[c] for c in courses if c in exam_map}
+
+        if debug: print("courses", courses)
+        slots = {}
+        for c in courses:
+            if c in exam_map:
+                print("c", c)
+                slots[c] = exam_map[c]
+
         # Compare each pair for overlap
+        if debug: print("slots", slots)
         for c1, c2 in itertools.combinations(slots.keys(), 2):
             start1, end1 = slots[c1]
             start2, end2 = slots[c2]
             # Check for overlap
+            if debug:
+                print("c1", c1)
+                print("c2", c2)
+                print("start1, end1:", start1, end1)
+                print("start2, end2:", start2, end2)
+            
             if start1 < end2 and start2 < end1:
                 conflicts.append({
                     'Student ID': sid,
